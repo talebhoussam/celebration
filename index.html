@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dr. Meriem Chettih — A Beautiful Beginning 🦷</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:    #0A2533;
+    --teal:    #114B61;
+    --gold:    #D4AF37;
+    --gold-lt: #F3E5AB;
+    --pearl:   #F9F8F6;
+    --mint:    #B2DFDB;
+    --white:   #FFFFFF;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --border:  rgba(212, 175, 55, 0.2);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--pearl);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── BACKGROUND GLOWS ── */
+  .glow-orb {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(178,223,219,0.08) 0%, transparent 70%);
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* ── PREMIUM HEADER ── */
+  header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+  }
+  .brand {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    color: var(--gold-lt);
+    text-decoration: none;
+    transition: opacity 0.3s;
+  }
+  .brand:hover { opacity: 0.8; }
+  .header-badge {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: rgba(212, 175, 55, 0.1);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    border: 1px solid var(--border);
+    color: var(--gold-lt);
+  }
+
+  /* ── CANVAS CONFETTI ── */
+  #confetti-canvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 99;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem 1.5rem 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── GEOMETRIC LUXURY ICON ── */
+  .tooth-wrap {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin-bottom: 3rem;
+    animation: float 5s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%       { transform: translateY(-12px) rotate(2deg); }
+  }
+
+  .tooth-svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 30px rgba(212,175,55,0.3));
+  }
+
+  .cap {
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.8rem;
+    animation: gentle-wiggle 6s ease-in-out infinite;
+  }
+
+  @keyframes gentle-wiggle {
+    0%, 100% { transform: translateX(-50%) rotate(-4deg); }
+    50%       { transform: translateX(-50%) rotate(4deg); }
+  }
+
+  /* Sparkles */
+  .sparkles { position: absolute; inset: -20px; pointer-events: none; }
+  .sparkle {
+    position: absolute;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gold-lt);
+    animation: blink 2.5s ease-in-out infinite;
+  }
+  .sparkle:nth-child(1) { top: 15%; left: 0%; animation-delay: 0s; }
+  .sparkle:nth-child(2) { top: 10%; right: 0%; animation-delay: 0.5s; }
+  .sparkle:nth-child(3) { bottom: 20%; left: -10%; animation-delay: 1s; }
+  .sparkle:nth-child(4) { bottom: 15%; right: -10%; animation-delay: 1.5s; }
+
+  @keyframes blink {
+    0%, 100% { opacity: 0.2; transform: scale(0.8); }
+    50%       { opacity: 1; transform: scale(1.4); filter: drop-shadow(0 0 4px var(--gold-lt)); }
+  }
+
+  /* ── HERO TYPOGRAPHY ── */
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--mint);
+    margin-bottom: 1.2rem;
+  }
+
+  .headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 8vw, 5.5rem);
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+  }
+  .headline em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  .sub {
+    font-size: clamp(1rem, 2.8vw, 1.25rem);
+    color: rgba(249, 248, 246, 0.8);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  .scroll-indicator {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .scroll-indicator:hover { color: var(--gold-lt); }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 6rem 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .divider {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto;
+  }
+
+  /* ── THE HEART DIALOGUE ── */
+  .message-section { text-align: center; }
+  .section-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    font-weight: 600;
+  }
+
+  .message-body {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 4vw, 2.1rem);
+    line-height: 1.7;
+    color: var(--pearl);
+    font-weight: 400;
+  }
+  .message-body strong {
+    color: var(--gold-lt);
+    font-weight: 600;
+    border-bottom: 1px dashed rgba(243, 229, 171, 0.4);
+  }
+
+  /* ── CARD GRID ── */
+  .wishes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem 1.5rem 6rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .wish-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    text-align: left;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s, border 0.4s;
+    backdrop-filter: blur(10px);
+  }
+  .wish-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(212, 175, 55, 0.4);
+  }
+
+  .wish-icon { 
+    font-size: 2rem; 
+    margin-bottom: 1.5rem; 
+    display: inline-block;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+  }
+  .wish-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--gold-lt);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+  .wish-text {
+    font-size: 0.9rem;
+    color: rgba(249, 248, 246, 0.7);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── CONCLUSION ── */
+  .final {
+    text-align: center;
+    padding: 4rem 1.5rem 8rem;
+  }
+  .final-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--white);
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+  }
+  .final-headline em {
+    color: var(--gold);
+    font-style: italic;
+  }
+  .final-note {
+    font-size: 1.05rem;
+    color: rgba(249, 248, 246, 0.65);
+    max-width: 540px;
+    margin: 0 auto 3rem;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+  .signature-mark {
+    font-size: 1.8rem;
+    animation: heart-pulse 2s infinite;
+    display: inline-block;
+  }
+
+  @keyframes heart-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 8px rgba(212,175,55,0.6)); }
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.05);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.75rem;
+    color: rgba(249, 248, 246, 0.3);
+    letter-spacing: 0.1em;
+  }
+  footer a {
+    color: rgba(249, 248, 246, 0.5);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  footer a:hover { color: var(--gold-lt); }
+
+  /* ── SMOOTH SCROLL ENTRANCE ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE TWEAKS ── */
+  @media (max-width: 768px) {
+    header { padding: 1.5rem; }
+    section { padding: 4rem 1.5rem; }
+    .wishes-grid { padding: 1rem 1.5rem 4rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tooth-wrap, .cap, .sparkle, .signature-mark { animation: none; }
+    .fade-in { opacity: 1; transform: none; transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="glow-orb"></div>
+<canvas id="confetti-canvas"></canvas>
+
+<!-- ── HEADER ── -->
+<header>
+  <a href="https://ustal.dev" class="brand">USTAL.DEV</a>
+  <div class="header-badge">Special Edition</div>
+</header>
+
+<!-- ── HERO SECTION ── -->
+<div class="hero">
+  <div class="tooth-wrap">
+    <div class="sparkles">
+      <div class="sparkle"></div>
+      <div class="sparkle"></div>
+      <div class="sparkle"></div>
+      <div class="sparkle"></div>
+    </div>
+    <!-- Ultra Sleek, Minimalist Premium Tooth Crown Geometry -->
+    <svg class="tooth-svg" viewBox="0 0 160 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M80 20 C45 20 25 45 25 70 C25 85 28 98 30 110 C34 135 38 165 48 180 C54 188 64 190 70 182 C74 176 78 162 80 150 C82 162 86 176 90 182 C96 190 106 188 112 180 C122 165 126 135 130 110 C132 98 135 85 135 70 C135 45 115 20 80 20Z"
+            fill="url(#premiumGoldGrad)" stroke="#D4AF37" stroke-width="1.5"/>
+      <path d="M40 70 C40 50 55 35 80 35" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round"/>
+      <defs>
+        <linearGradient id="premiumGoldGrad" x1="25" y1="20" x2="135" y2="180" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#F5F3EE"/>
+          <stop offset="35%" stop-color="#E2D4B7"/>
+          <stop offset="100%" stop-color="#B89742"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <div class="cap">🎓</div>
+  </div>
+
+  <p class="eyebrow">June 23, 2026 · A Masterpiece Era Begins</p>
+  <h1 class="headline">Dr. <em>Meriem Chettih</em></h1>
+  <p class="sub">Years of brilliant execution, relentless hard work, and pure heart have officially transformed your dream into reality today. The white coat looks stunning on you.</p>
+  
+  <a href="#content" class="scroll-indicator">
+    <span>Discover the magic</span>
+    <div class="scroll-line"></div>
+  </a>
+</div>
+
+<div id="content" class="divider"></div>
+
+<!-- ── DEVOTION MESSAGE ── -->
+<section class="message-section fade-in">
+  <p class="section-label">A Tribute to Excellence</p>
+  <p class="message-body">
+    Today, you didn’t just graduate —<br/>
+    you stepped into a lifelong calling to <strong>heal, perfect, and inspire</strong>.<br/><br/>
+    Behind every answered question, every complex clinic exam,<br/>
+    and every single sleepless hour was your unstoppable spirit.<br/>
+    The title is yours. <strong>You earned every ounce of it.</strong>
+  </p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── WISHES GRID ── -->
+<div class="wishes-grid">
+  <div class="wish-card fade-in">
+    <div class="wish-icon">✨</div>
+    <div class="wish-title">Brilliant Mastery</div>
+    <div class="wish-text">May your precision and care build a world-class reputation where every patient feels safe, understood, and exceptionally treated.</div>
+  </div>
+  <div class="wish-card fade-in">
+    <div class="wish-icon">🩺</div>
+    <div class="wish-title">Transforming Smiles</div>
+    <div class="wish-text">May the artistry of your work bring true confidence to people, turning every clinic room you step into a space of relief and light.</div>
+  </div>
+  <div class="wish-card fade-in">
+    <div class="wish-icon">👑</div>
+    <div class="wish-title">Limitless Trajectory</div>
+    <div class="wish-text">This milestone is simply the foundational launchpad. The entire field of dentistry is richer and brighter starting today because of you.</div>
+  </div>
+  <div class="wish-card fade-in">
+    <div class="wish-icon">🤍</div>
+    <div class="wish-title">Deeply Cherished</div>
+    <div class="wish-text">No matter how demanding the journey or the milestones get, remember that you are profoundly supported, admired, and loved.</div>
+  </div>
+</div>
+
+<!-- ── CONCLUSION CTA ── -->
+<div class="final fade-in">
+  <div class="final-headline">
+    The world belongs to you,<br/><em>Dr. Meriem.</em>
+  </div>
+  <p class="final-note">
+    You held the standard of a doctor long before the degree caught up. Now go out there and design the future, one brilliant smile at a time.
+  </p>
+  <div class="signature-mark">🦷🤍✨</div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  Made with absolute love & admiration · Delivered via <a href="https://ustal.dev" target="_blank">ustal.dev</a>
+</footer>
+
+<script>
+/* ── FLUID HIGH-QUALITY CONFETTI SYSTEM ── */
+(function() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, pieces = [];
+  const COLORS = ['#D4AF37', '#F3E5AB', '#B2DFDB', '#FFFFFF', '#E2D4B7'];
+
+  function resize() { 
+    W = canvas.width = window.innerWidth; 
+    H = canvas.height = window.innerHeight; 
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function Particle() {
+    this.x = Math.random() * W;
+    this.y = Math.random() * -H - 20;
+    this.w = Math.random() * 6 + 4;
+    this.h = Math.random() * 10 + 6;
+    this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+    this.rot = Math.random() * Math.PI * 2;
+    this.vx = (Math.random() - 0.5) * 1.2;
+    this.vy = Math.random() * 1.5 + 1.5;
+    this.vr = (Math.random() - 0.5) * 0.05;
+  }
+  
+  Particle.prototype.update = function() {
+    this.x += this.vx;
+    this.y += this.vy;
+    this.rot += this.vr;
+    if (this.y > H) {
+      this.y = -20;
+      this.x = Math.random() * W;
+    }
+  };
+
+  Particle.prototype.draw = function() {
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    ctx.rotate(this.rot);
+    ctx.globalAlpha = 0.8;
+    ctx.fillStyle = this.color;
+    ctx.fillRect(-this.w/2, -this.h/2, this.w, this.h);
+    ctx.restore();
+  };
+
+  // Initialize a continuous elegant rain instead of a single rapid burst
+  for (let i = 0; i < 90; i++) {
+    pieces.push(new Particle());
+  }
+
+  function loop() {
+    ctx.clearRect(0, 0, W, H);
+    pieces.forEach(p => { 
+      p.update(); 
+      p.draw(); 
+    });
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+/* ── SMOOTH SCROLL ENTRANCE INTERSECTION OBSERVER ── */
+const fadeEls = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { 
+    if (e.isIntersecting) { 
+      e.target.classList.add('visible'); 
+      observer.unobserve(e.target); 
+    } 
+  });
+}, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+fadeEls.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
